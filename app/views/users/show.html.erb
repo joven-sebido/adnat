@@ -1,13 +1,20 @@
 <h1><u>Adnat</u></h1>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to "\nLogin", login_path %>
+<% if logged_in? %>
+  <p>
+    Logged in as <%= @user.name %>
+    <%= link_to "Log out", logout_path, method: :delete %>
+    <br><br>
+    You aren't a member of any organizations. Join an existing one or create a new one.
+  </p>
+<% else %>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+  
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+  <%= link_to "\nLogin", login_path %>
+<% end %>
